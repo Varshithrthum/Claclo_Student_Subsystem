@@ -68,7 +68,6 @@ async def create_profile(profile: Profile):
         print("Error occurred:", e)
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
-
 async def download_profile(user_id: str):
     profile_data = students_collection.find_one({"user_id": user_id})
     if profile_data is None:
