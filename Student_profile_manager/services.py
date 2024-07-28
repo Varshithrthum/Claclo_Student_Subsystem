@@ -3,12 +3,13 @@ from urllib.parse import quote_plus
 from fastapi import HTTPException
 from Student_profile_manager.models import Profile
 import hashlib
+import os
 
-# MongoDB connection parameters
-username = "19275759"
-password = "Brookes"
-cluster_url = "comp7033.oynlmsu.mongodb.net"
-database_name = "student_account_database"
+# Load sensitive information from environment variables
+username = os.getenv("MONGO_USERNAME")
+password = os.getenv("MONGO_PASSWORD")
+cluster_url = os.getenv("MONGO_CLUSTER_URL")
+database_name = os.getenv("MONGO_DATABASE_NAME")
 
 # Escape username and password
 escaped_username = quote_plus(username)
@@ -32,7 +33,6 @@ async def create_profile(profile: Profile):
         hashed_password = hashlib.sha256(profile.password.encode()).hexdigest()
 
         # Insert profile data into MongoDB
-        # Insert profile data into 'students' collection
         result = students_collection.insert_one({
             "user_id": profile.user_id,
             "first_name": profile.first_name,
