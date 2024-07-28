@@ -1,11 +1,12 @@
 from pymongo import MongoClient
 from urllib.parse import quote_plus
+import os
 
-# MongoDB connection parameters
-username = "19275759"
-password = "Brookes"
-cluster_url = "comp7033.oynlmsu.mongodb.net"
-database_name = "student_account_database"
+# Load sensitive information from environment variables
+username = os.getenv("MONGO_USERNAME")
+password = os.getenv("MONGO_PASSWORD")
+cluster_url = os.getenv("MONGO_CLUSTER_URL")
+database_name = os.getenv("MONGO_DATABASE_NAME")
 
 # Escape username and password
 escaped_username = quote_plus(username)
