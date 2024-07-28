@@ -1,20 +1,23 @@
 from fastapi import HTTPException
 from pymongo import MongoClient
 import hashlib
+import os
 
-# MongoDB connection parameters
-username = "username"
-password = "pasword"
-cluster_url = ".mongodb.net"
-database_name = "student_account_database"
+# Load sensitive information from environment variables
+username = os.getenv("MONGO_USERNAME")
+password = os.getenv("MONGO_PASSWORD")
+cluster_url = os.getenv("MONGO_CLUSTER_URL")
+database_name = os.getenv("MONGO_DATABASE_NAME")
+
+# Construct MongoDB URI
+mongo_uri = f"mongodb+srv://{username}:{password}@{cluster_url}/{database_name}?retryWrites=true&w=majority"
 
 # Connect to MongoDB
-client = mongouri
+client = MongoClient(mongo_uri)
 db = client[database_name]
 
 # Define MongoDB collections
 users_collection = db["Security"]
-
 
 async def authenticate_user(user_id: str, password: str) -> str:
     # Hash the provided password
@@ -36,6 +39,6 @@ async def authenticate_user(user_id: str, password: str) -> str:
             else:
                 # Lock the user account
                 users_collection.update_one({"user_id": user_id}, {"$set": {"account_status": "locked"}})
-                raise HTTPException(status_code=401, detail="Account is locked Please Contact Admin.")
+                raise HTTPException(status_code=401, detail="Account is locked. Please contact Admin.")
     else:
         raise HTTPException(status_code=401, detail="Unauthorized user not available")
