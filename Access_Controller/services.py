@@ -3,9 +3,9 @@ from pymongo import MongoClient
 import hashlib
 
 # MongoDB connection parameters
-username = "19275759"
-password = "Brookes"
-cluster_url = "comp7033.oynlmsu.mongodb.net"
+username = "username"
+password = "pasword"
+cluster_url = ".mongodb.net"
 database_name = "student_account_database"
 
 # Connect to MongoDB
