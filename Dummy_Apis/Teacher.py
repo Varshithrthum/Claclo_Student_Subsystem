@@ -14,7 +14,7 @@ escaped_username = quote_plus(username)
 escaped_password = quote_plus(password)
 
 # MongoDB connection string
-mongo_uri = f"mongodb+srv://{escaped_username}:{escaped_password}@{cluster_url}/{database_name}?retryWrites=true&w=majority"
+mongo_uri = mongodb uri
 
 # Connect to MongoDB
 client = MongoClient(mongo_uri)
