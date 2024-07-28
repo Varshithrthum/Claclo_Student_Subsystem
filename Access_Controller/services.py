@@ -9,7 +9,7 @@ cluster_url = "comp7033.oynlmsu.mongodb.net"
 database_name = "student_account_database"
 
 # Connect to MongoDB
-client = MongoClient(f"mongodb+srv://{username}:{password}@{cluster_url}/{database_name}?retryWrites=true&w=majority")
+client = mongouri
 db = client[database_name]
 
 # Define MongoDB collections
