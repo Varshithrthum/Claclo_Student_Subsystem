@@ -16,9 +16,5 @@ MongoDB
 GCP (Google Cloud Platform)
 Docker
 Kubernetes
-
 🏗️ System Architecture
-
 Uses microservices architecture ensures scalability, flexibility, and robustness for each component.
-
-
